@@ -2,6 +2,6 @@
 import { LayoutProps } from "@/types/types";
 
 const LayoutDashboard = ({ children }: LayoutProps) => {
-  return <>{children}</>;
+  return <div className="pt-14">{children}</div>;
 };
 export { LayoutDashboard };

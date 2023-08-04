@@ -1,6 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
-
+import { LayoutDashboard } from "@/components/layout";
+import { NavDashboard } from "@/components/NavDashboard";
 interface User {
   name: string;
   email: string;
@@ -15,21 +16,24 @@ export default function Profil() {
     }
   }, []);
   return (
-    <div>
-      <div className="row align-items-center profile-header">
-        <div className="col-md-2 mb-3">
-          {/* <img
+    <LayoutDashboard>
+      <NavDashboard/>
+      <div>
+        <div className="row align-items-center profile-header">
+          <div className="col-md-2 mb-3">
+            {/* <img
             src={picture}
             alt="Profile"
             className="rounded-circle img-fluid profile-picture mb-3 mb-md-0"
           /> */}
-        </div>
-        <div className="col-md text-center text-md-left">
-          <h2>{user.name}</h2>
-          <p>{user.email}</p>
-          {/* <p className="lead text-muted">{email}</p> */}
+          </div>
+          <div className="col-md text-center text-md-left">
+            <h2>{user.name}</h2>
+            <p>{user.email}</p>
+            {/* <p className="lead text-muted">{email}</p> */}
+          </div>
         </div>
       </div>
-    </div>
+    </LayoutDashboard>
   );
 }

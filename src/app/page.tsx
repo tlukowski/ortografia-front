@@ -16,7 +16,7 @@ export default function App() {
     if (loggedInUser) {
       router.push("/dashboard");
     }
-    setIsLoading(true);
+    setIsLoading(false);
   }, [router]);
   return (
     <>
@@ -25,11 +25,11 @@ export default function App() {
       ) : (
         <div>
           <Image width={300} height={300} src={Logo} alt="Logo"></Image>
-          <div className="mt-6 max-w-[300px] text-lg">
+          <div className="mt-6 max-w-[300px] text-lg text-white">
             Ćwicz i poprawiaj swoją ortografię razem z nami!
           </div>
-          <div className="mt-8">
-            <Button link="/start">Rozpocznij</Button>
+          <div className="mt-8 flex justify-center flex-wrap">
+            <Button link="/rejestracja">Rozpocznij</Button>
             <Button
               className={`${buttonVariants({ variant: "secondary" })} mt-4`}
               link="/logowanie"

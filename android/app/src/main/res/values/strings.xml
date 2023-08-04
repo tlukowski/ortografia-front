@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">ortografia</string>
+    <string name="title_activity_main">ortografia</string>
+    <string name="package_name">ortografia.pl</string>
+    <string name="custom_url_scheme">ortografia.pl</string>
+</resources>

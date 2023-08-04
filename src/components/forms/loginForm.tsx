@@ -74,7 +74,7 @@ export default function LoginForm() {
                   className="mt-4 bg-gray-50 border border-gray-300 text-gray-500 text-sm  block w-full p-2.5 focus-visible:outline-none"
                 />
                 {/* If validation is not passed show errors */}
-                <p className="error text-xs text-red-700 mt-1">
+                <p className="error text-xs text-red-900 mt-1">
                   {errors.password && touched.password && errors.password}
                 </p>
                 {/* Click on submit button to submit the form */}

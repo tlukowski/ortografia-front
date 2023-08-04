@@ -10,11 +10,11 @@ export interface ButtonProps
 }
 
 const buttonVariants = cva(
-  "w-[288px] h-[47px] flex items-center justify-center text-white shadow-md",
+  "w-[175px] h-[44px] flex items-center justify-center shadow-md",
   {
     variants: {
       variant: {
-        default: "bg-[#E21883]",
+        default: "bg-white",
         secondary: "bg-[#EAB115]",
       },
       size: {
@@ -22,21 +22,25 @@ const buttonVariants = cva(
         sm: "",
         lg: "",
       },
+      text: {
+        default: "text-[#6E88F7] font-bold rounded-3xl",
+      },
     },
     defaultVariants: {
       variant: "default",
       size: "default",
+      text: "default",
     },
   }
 );
 
-const Button = ({ children, link, className, variant, size }: ButtonProps) => {
+const Button = ({ children, link, className, variant, size}: ButtonProps) => {
   return link ? (
     <Link className={buttonVariants({ variant, size, className })} href={link}>
       {children}
     </Link>
   ) : (
-    <button className={buttonVariants({ variant, size, className })}>
+    <button type="button" className={buttonVariants({ variant, size, className })}>
       {children}
     </button>
   );
