@@ -40,7 +40,7 @@ const Button = ({ children, link, className, variant, size}: ButtonProps) => {
       {children}
     </Link>
   ) : (
-    <button type="button" className={buttonVariants({ variant, size, className })}>
+    <button type="submit" className={buttonVariants({ variant, size, className })}>
       {children}
     </button>
   );

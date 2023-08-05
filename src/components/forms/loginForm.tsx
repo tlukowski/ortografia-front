@@ -5,10 +5,8 @@ import axios from "axios";
 import { useRouter } from "next/navigation";
 import { lockIcon } from "../icons/lockIcon";
 
-const schema = Yup.object().shape({
-  email: Yup.string()
-    .required("Email jest wymagany")
-    .email("Nieprawidłowy format email"),
+const apiUrl = process.env.API_URL;
+const schema = Yup.object().shape({  
   password: Yup.string().required("Hasło jest wymagane"),
 });
 
@@ -17,11 +15,11 @@ export default function LoginForm() {
   const handleFormSubmit = (values: any) => {
     axios({
       method: "POST",
-      url: "http://127.0.0.1:3002/api/users/login",
+      url: `${apiUrl}/api/login`,
       data: values,
     }).then((res) => {
       if (res.data.token) {
-        window.localStorage.setItem("user", JSON.stringify(res.data.data.user));
+        window.localStorage.setItem("user", JSON.stringify(res.data.user));
         // window.localStorage.setItem("token", res.data.token);
         router.push("/profil");
       }
@@ -31,7 +29,7 @@ export default function LoginForm() {
     <>
       {/* Wrapping form inside formik tag and passing our schema to validationSchema prop */}
       <Formik
-        initialValues={{ email: "", password: "" }}
+        initialValues={{ login: "", password: "" }}
         validationSchema={schema}
         onSubmit={handleFormSubmit}
       >
@@ -49,18 +47,17 @@ export default function LoginForm() {
               <form onSubmit={handleSubmit}>
                 {/* Our input html with passing formik parameters like handleChange, values, handleBlur to input properties */}
                 <Field
-                  type="email"
-                  name="email"
+                  type="text"
+                  name="login"
                   onChange={handleChange}
                   onBlur={handleBlur}
-                  value={values.email}
+                  value={values.login}
                   placeholder="Wpisz e-mail..."
-                  className="mt-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm focus-visible:outline-none block w-full p-2.5 "
-                  id="email"
+                  className="mt-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm focus-visible:outline-none block w-full p-2.5"
                 />
                 {/* If validation is not passed show errors */}
                 <p className="error text-xs text-red-700 mt-1">
-                  {errors.email && touched.email && errors.email}
+                  {errors.login && touched.login && errors.login}
                 </p>
                 {/* Our input html with passing formik parameters like handleChange, values, handleBlur to input properties */}
                 <Field
@@ -68,7 +65,6 @@ export default function LoginForm() {
                   name="password"
                   onChange={handleChange}
                   onBlur={handleBlur}
-                  icon={lockIcon}
                   value={values.password}
                   placeholder="Wpisz hasło..."
                   className="mt-4 bg-gray-50 border border-gray-300 text-gray-500 text-sm  block w-full p-2.5 focus-visible:outline-none"

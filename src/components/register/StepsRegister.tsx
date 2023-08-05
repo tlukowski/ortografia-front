@@ -1,32 +1,50 @@
 import { useMultistepForm } from '@/hooks/useMultistepForm'
-import React, { FormEvent } from 'react'
+import React, { FormEvent, useState } from 'react'
 import PasswordForm from '../forms/PasswordForm';
 import NameForm from '../forms/NameForm';
 import {buttonVariants } from '../button';
 import { Formik } from 'formik';
-import EmailForm from '../forms/emailForm';
+import EmailForm from '../forms/EmailForm';
+
+type FormData = {
+  name: string;
+  email: string;
+  password: string;
+  repeatPassword: string;
+};
+
+const INIT_DATA: FormData = {
+  name: "",
+  email: "",
+  password: "",
+  repeatPassword: "",
+}
 
 const StepsRegister = () => { 
-  
+    const [data, setData] = useState(INIT_DATA)
+    const updateFields = (fields: Partial<FormData>) => {
+      setData(prev => {
+        return {...prev, ...fields}
+      })
+    }
     const { currentStep, nextStep, isLastStep } = useMultistepForm([
-      <NameForm key={1} />,
-      <EmailForm key={2} />,
-      <PasswordForm key={3}/>,
+      <NameForm {...data} key={1} updateFields={updateFields} />,
+      <EmailForm {...data} key={2} updateFields={updateFields} />,
+      <PasswordForm {...data} key={3} updateFields={updateFields} />,
     ]);
-    const onSubmit = (e: FormEvent) => {
+    const onSubmit = (e: FormEvent , ) => {
       e.preventDefault();
-      nextStep();
+      if(!isLastStep) return nextStep();
+      alert('Zarejestrowano!');
+      
     };
   return (
     <>
-      <Formik
-        initialValues={{}}
-        onSubmit={onSubmit}
-      >
+      <Formik initialValues={INIT_DATA} onSubmit={onSubmit}>
         <>
           {currentStep}
           <div className="flex justify-center mt-4">
-            {!isLastStep && (
+            
               <button
                 type="submit"
                 className={buttonVariants()}
@@ -34,12 +52,7 @@ const StepsRegister = () => {
               >
                 Dalej
               </button>
-            )}
-            {isLastStep && (
-              <button type="submit" className={buttonVariants()}>
-                Zarejestruj się
-              </button>
-            )}
+                     
           </div>
         </>
       </Formik>
