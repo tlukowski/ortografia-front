@@ -15,7 +15,7 @@ export default function LoginForm() {
   const handleFormSubmit = (values: any) => {
     axios({
       method: "POST",
-      url: `${apiUrl}/api/login`,
+      url: `https://xyz-api2023.azurewebsites.net/api/users/login`,
       data: values,
     }).then((res) => {
       if (res.data.token) {

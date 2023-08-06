@@ -4,7 +4,7 @@ import { LayoutDashboard } from "@/components/layout";
 export default function Dashboard() {
   return (
     <LayoutDashboard>
-      <NavDashboard />
+      <NavDashboard />      
     </LayoutDashboard>
   );
 }

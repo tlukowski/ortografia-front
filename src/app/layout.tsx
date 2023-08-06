@@ -16,10 +16,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="pl">
-      <body className={` ${inter.className}`}>
-        <main className="max-w-sm flex bg-[#6E88F7] min-h-screen mx-auto flex-col px-6 text-center relative ">
-          {children}
-        </main>
+      <body
+        className={`max-w-sm flex bg-[#6E88F7] min-h-screen mx-auto flex-col px-6 text-center relative ${inter.className}`}
+      >
+        <main className=" ">{children}</main>
       </body>
     </html>
   );
