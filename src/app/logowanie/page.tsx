@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Logo from "../../app/logo.svg";
-import LoginForm from "@/components/forms/loginForm";
+import LoginForm from "@/components/forms/LoginForm";
 export default function Login() {
   return (
     <div className="">
